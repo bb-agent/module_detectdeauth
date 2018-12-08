@@ -1,7 +1,7 @@
 module_detectdeauth
 ==============
 
-FruityWiFi detectdeauth module
+BlackBlulb detectdeauth module
 
 
 v1.1
@@ -11,6 +11,6 @@ v1.1
 
 v1.0
 ---------------------------------
-- FruityWiFi v2.4 is required
+- BlackBlulb v2.4 is required
 - python-scapy is required
 
