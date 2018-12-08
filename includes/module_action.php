@@ -43,7 +43,7 @@ function killRegex($regex){
 	
 	if (count($output) > 0) {
 		$exec = "kill " . $output[0];
-		exec_fruitywifi($exec);
+		exec_blackbulb($exec);
 	}	
 }
 
@@ -57,10 +57,10 @@ function copyLogsHistory() {
 	
 	if ( 0 < filesize( $mod_logs ) ) {
 		$exec = "$bin_cp $mod_logs $mod_logs_history/".gmdate("Ymd-H-i-s").".log";
-		exec_fruitywifi($exec);
+		exec_blackbulb($exec);
 		
 		$exec = "$bin_echo '' > $mod_logs";
-		//exec_fruitywifi($exec);
+		//exec_blackbulb($exec);
 	}
 }
 
@@ -68,27 +68,27 @@ if($service == "detectdeauth") {
 	if ($action == "start") {
 		
 		$exec = "$bin_echo '' > $mod_logs";
-		exec_fruitywifi($exec);
+		exec_blackbulb($exec);
 		
 		$email_conf = "email.conf";
 		$exec = "echo '[email]' > $email_conf";
-		exec_fruitywifi($exec);
+		exec_blackbulb($exec);
 		$exec = "echo '    from = $mod_detectdeauth_email_from' >> $email_conf";
-		exec_fruitywifi($exec);
+		exec_blackbulb($exec);
 		$exec = "echo '    to = $mod_detectdeauth_email_to' >> $email_conf";
-		exec_fruitywifi($exec);
+		exec_blackbulb($exec);
 		$exec = "echo '    server = $mod_detectdeauth_smtp_server' >> $email_conf";
-		exec_fruitywifi($exec);
+		exec_blackbulb($exec);
 		$exec = "echo '    port = $mod_detectdeauth_smtp_port' >> $email_conf";
-		exec_fruitywifi($exec);
+		exec_blackbulb($exec);
 		$exec = "echo '    user = $mod_detectdeauth_smtp_user' >> $email_conf";
-		exec_fruitywifi($exec);
+		exec_blackbulb($exec);
 		$exec = "echo '    pass = $mod_detectdeauth_smtp_pass' >> $email_conf";
-		exec_fruitywifi($exec);
+		exec_blackbulb($exec);
 		$exec = "echo '    auth = $mod_detectdeauth_smtp_auth' >> $email_conf";
-		exec_fruitywifi($exec);
+		exec_blackbulb($exec);
 		$exec = "echo '    starttls = $mod_detectdeauth_smtp_starttls' >> $email_conf";
-		exec_fruitywifi($exec);
+		exec_blackbulb($exec);
 		
 		
 		# OPTIONS
@@ -97,7 +97,7 @@ if($service == "detectdeauth") {
 		if ($mod_detectdeauth_jump == "1") $options_jump = "-j";
 		
 		$exec = "python scan-deauth.py -i mon0 $options_channel $options_alert -d $mod_detectdeauth_alert_delay -l $mod_logs -n $mod_detectdeauth_number $options_jump > /dev/null 2 &";
-		exec_fruitywifi($exec);
+		exec_blackbulb($exec);
 	
 	} else if($action == "stop") {
 	
@@ -113,10 +113,10 @@ if($service == "detectdeauth") {
 if ($install == "install_$mod_name") {
 
     $exec = "chmod 755 install.sh";
-    exec_fruitywifi($exec);
+    exec_blackbulb($exec);
 
     $exec = "$bin_sudo ./install.sh > $log_path/install.txt &";
-    exec_fruitywifi($exec);
+    exec_blackbulb($exec);
 
     header("Location: ../../install.php?module=$mod_name");
     exit;
